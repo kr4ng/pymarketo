@@ -6,7 +6,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'marketo'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'pymarketo'))
 from version import VERSION
 
 long_description = '''
