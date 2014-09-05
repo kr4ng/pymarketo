@@ -28,22 +28,6 @@ Then you would use the MktoCustomObject methods to finish this example
 '''
 ```
 
-### Error
-
-An Exception is raised if the lead is not found, or if a Marketo error occurs.
-
-```python
-try:
-    lead = client.get_lead(email='ilyaaaaaaa@segment.io')
-except Exception as error:
-    print error
-
-'''
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Body><SOAP-ENV:Fault><faultcode>SOAP-ENV:Client</faultcode><faultstring>20103 - Lead not found</faultstring><detail><ns1:serviceException xmlns:ns1="http://www.marketo.com/mktows/"><name>mktServiceException</name><message>No lead found with EMAIL = ilyaaaaaaa@segment.io (20103)</message><code>20103</code></ns1:serviceException></detail></SOAP-ENV:Fault></SOAP-ENV:Body></SOAP-ENV:Envelope>
-'''
-```
-
-
 ## License
 
 ```
