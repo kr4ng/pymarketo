@@ -19,10 +19,10 @@ setup(
     name='pymarketo',
     version=VERSION,
     url='https://github.com/kr4ng/pymarketo',
-    author='Steven Simoni',
-    author_email='steven@rightstack.io',
+    author=['Steven Simoni', 'Ben Johnson'],
+    author_email='ben@rightstack.io',
     maintainer='rightstack.io',
-    maintainer_email='steven@rightstack.io',
+    maintainer_email='ben@rightstack.io',
     packages=['pymarketo'],
     license='MIT License',
     install_requires=[
