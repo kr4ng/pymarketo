@@ -16,7 +16,7 @@ information.
 '''
 
 setup(
-    name='marketo',
+    name='pymarketo',
     version=VERSION,
     url='https://github.com/kr4ng/pymarketo',
     author='Steven Simoni',
