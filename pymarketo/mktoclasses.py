@@ -113,4 +113,69 @@ class MktoCustomObject:
 	def testXML(self):
 		print self.customobjectxml
 
+class MergeLeads:
+	def __init__(self, client, typeofmerge):
+		'''
+		winningleadkeylist is like this [winner1, winner2, winner3]
+		losingleadkeylist is like this [(loser1,anotherloser1,anotherloser1),(loser2, anotherloser2, anotherloser2),etc. etc.]
+		'''
+		self.type = typeofmerge
+		self.winningleadkeylist = []
+		self.losingleadkeylist = []
+		self.winningleadxml = ''
+		self.losingleadsxml = ''
+
+	def submit(self):
+		'''
+		<attribute>
+            <attrName>MKTOID</attrName>
+            <attrValue>1090177</attrValue>
+        </attribute>
+		'''
+		body = ("<ns1:paramsMergeLeads>" +
+					"<winningLeadKeyList>" + self.winningleadxml + "</winningLeadKeyList>" +
+					"<losingLeadKeyLists>" + 
+					self.losingleadsxml +
+					"</losingLeadKeyLists>" +
+					"<operation>UPSERT</operation>" +
+					"</ns1:paramsMergeLeads>")
+		if self.debug:
+			flog = open('tmp/mktolog.xml', 'w+')
+			flog.write(body)
+		response=self.client.request(body)
+		root = ET.fromstring(response.text)
+		return None
+
+	def addonewinninglead(self, winningleadid):
+		self.winningleadxml += ("<attribute><attrName>IDNUM</attrName><attrValue>" + winningleadid + "</attrValue></attribute>")
+
+	def addonelosinglead(self, losingleadid):
+		self.losingleadsxml += ("<keyList><attribute><attrName>IDNUM</attrName><attrValue>"+ losingleadid +"</attrValue></attribute></keyList>")
+
+'''
+<ns1:paramsMergeLeads>
+      <winningLeadKeyList>
+        <attribute>
+          <attrName>IDNUM</attrName>
+          <attrValue>2</attrValue>
+        </attribute>
+      </winningLeadKeyList>
+      <losingLeadKeyLists>
+        <keyList>
+          <attribute>
+            <attrName>IDNUM</attrName>
+            <attrValue>15</attrValue>
+          </attribute>
+        </keyList>
+        <keyList>
+          <attribute>
+            <attrName>IDNUM</attrName>
+            <attrValue>16</attrValue>
+          </attribute>
+        </keyList>
+      </losingLeadKeyLists>
+</ns1:paramsMergeLeads>
+'''
+
+
 
